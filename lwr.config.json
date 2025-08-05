@@ -1,0 +1,41 @@
+{
+  "lwc": {
+    "modules": [
+      {
+        "npm": "lightning-base-components"
+      },
+      { "dir": "$rootDir/src/modules" }
+    ]
+  },
+  "routes": [
+    {
+      "id": "app",
+      "path": "/",
+      "layoutTemplate": "$layoutsDir/index.html",
+      "rootComponent": "iasf/app",
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },{
+      "id":"login",
+      "path":"/login",
+      "layoutTemplate": "$layoutsDir/index.html",
+      "rootComponent":"iasf/login",
+      "bootstrap":{
+        "syntheticShadow":true
+      }
+    }
+  ],
+  "assets": [
+    {
+      "alias": "assetsDir",
+      "dir": "$rootDir/src/assets",
+      "urlPath": "/public/assets"
+    },
+    {
+      "alias": "favicon",
+      "file": "$rootDir/src/assets/favicon.ico",
+      "urlPath": "/favicon.ico"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+.slds-input {
+  background-color: #5c5c5c !important;
+}
+:host {
+  --slds-c-input-color-background: #5c5c5c;
+  /* --slds-g-color-neutral-base-10: #181818; */
+}
+
+.no-margin-help {
+  margin-bottom: 0.125rem;
+}

@@ -1,0 +1,14 @@
+<template>
+  <main>
+    <lwr-router-container router={router}>
+      <div class="slds-p-around_medium lgc-bg">
+        <h1 class="tw">IASF - Internal Application for Sales Fulfillment</h1>
+        <ui-pagelink label="Home" page-reference={homeReference}></ui-pagelink>
+        <iasf-accountsearch></iasf-accountsearch>
+      </div>
+      <lwr-outlet>
+        <div slot="error">This content failed to display.</div>
+      </lwr-outlet>
+    </lwr-router-container>
+  </main>
+</template>

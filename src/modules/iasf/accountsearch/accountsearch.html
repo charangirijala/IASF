@@ -1,0 +1,24 @@
+<template>
+  <div>
+    <div>
+      <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+        <div class="slds-col">
+          <lightning-input
+            type="text"
+            label="Search Accounts"
+            onchange={handleAccountInput}
+          ></lightning-input>
+        </div>
+        <div class="slds-col no-margin-help">
+          <lightning-button
+            variant="destructive-text"
+            onclick={handleAccountSearch}
+            label="Search Account"
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </div>
+      </div>
+      <iasf-accountrecord></iasf-accountrecord>
+    </div>
+  </div>
+</template>
