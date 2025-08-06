@@ -1,9 +1,11 @@
 {
   "moduleProviders": [
     "@eschweitzer78/lwrjs-env-module-provider",
-    "@lwrjs/app-service/moduleProvider",
-    "@lwrjs/lwc-module-provider",
-    "@lwrjs/npm-module-provider"
+    "@lwrjs/app-service/moduleProvider",  
+    "@lwrjs/router/module-provider",      
+    "@lwrjs/lwc-module-provider",         
+    "@lwrjs/npm-module-provider",         
+    "@lwrjs/module-registry/externals-module-provider"    
   ],
   "lwc": {
     "modules": [
