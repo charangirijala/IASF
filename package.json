@@ -15,7 +15,9 @@
     "stage:prod-compat": "yarn build:prod-compat && yarn start"
   },
   "dependencies": {
+    "@eschweitzer78/lwrjs-env-module-provider": "^1.0.4",
     "@lwrjs/router": "^0.18.3",
+    "dotenv": "^17.2.1",
     "lightning-base-components": "^1.27.2-alpha",
     "lwc": "latest",
     "lwr": "0.14.5",

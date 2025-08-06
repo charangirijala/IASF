@@ -1,5 +1,6 @@
 import { LightningElement,wire } from "lwc";
-import { NavigationContext,navigate } from 'lwr/navigation'
+import { NavigationContext, navigate } from 'lwr/navigation'
+// import currentEnv from '@eschweitzer78/env/ENVIRONMENT';
 export default class Login extends LightningElement{
      @wire(NavigationContext)
      navContext;
@@ -15,7 +16,16 @@ export default class Login extends LightningElement{
           event.preventDefault();
           console.log('btn clicked');
           try {  
-               const apiResponse = await fetch('https://5z9i5tsznd.execute-api.ap-south-1.amazonaws.com/Prod/auth/login', {
+               const currentEnv = process.env.ENVIRONMENT || 'Local';
+               console.log('currentenv', currentEnv);
+               let servicesURL="";
+               if (currentEnv === 'Local') {
+                    servicesURL = process.env.SERVICES_URL_LOCAL || 'https://5z9i5tsznd.execute-api.ap-south-1.amazonaws.com/Local';
+               } else if (currentEnv === 'Prod') {
+                    servicesURL = process.env.SERVICES_URL_PROD;
+               }
+               console.log('services url: ',servicesURL);
+               const apiResponse = await fetch(`${servicesURL}/auth/login`, {
                     method: 'POST',
                     credentials:'include',
                     headers: {
