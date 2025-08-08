@@ -15,12 +15,26 @@
                required
                onchange={handlePasswordChange}
                ></lightning-input>
-               <lightning-button
-               variant="destructive-text"
-               onclick={handleLogin}
-               label="Login"
-               class="slds-m-top_medium"
-             ></lightning-button>
+               <div class="slds-m-bottom_x-small">
+                    <a href="#">Forgot your password?</a>
+               </div>
+               <div class="slds-m-vertical_x-small">
+                    <p class="slds-text-color_error">{helptext}</p>
+               </div>
+               <div class="btn-container slds-grid slds-grid_vertical-align-center">
+                    <lightning-button
+                    variant="destructive-text"
+                    onclick={handleLogin}
+                    label="Login"
+                    class="btn-style"
+                    disabled={isLoading}
+                    >
+                    </lightning-button>
+                    <template lwc:if={isLoading}>
+                    <div class="slds-m-left_small">
+                    <div id="spinner" class="spinner"></div>
+                    </div></template>
+               </div>
           </div>
           </div>
      </main>
