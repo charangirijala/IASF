@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 import { createRouter } from 'lwr/router'
-// import { isAuthenticated } from 'utils/auth';
+import { AuthenticationService }  from './auth';
 const routerConfig = {
      routes: [
        {
@@ -28,17 +28,15 @@ const routerConfig = {
      caseSensitive: true
    }
 export default class App extends LightningElement {
-    connectedCallback() {
-      const cookies = document.cookie.split(';');
-     const accessToken = cookies.find((cookie) => {
-          cookie.trim().startsWith('access_token=');
-     })
-
-     if (!accessToken) {
-          window.location.href = '/login';
+  isAuthenticated = false;
+    async connectedCallback() {
+      this.isAuthenticated = await AuthenticationService();
+      if (!this.isAuthenticated) {
+        window.location.href = '/login';
+       }
      }
      
-    }
+    
      router = createRouter({ routerConfig });
 
      homeReference = { type: 'login' };
