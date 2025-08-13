@@ -29,10 +29,13 @@ const routerConfig = {
    }
 export default class App extends LightningElement {
   isAuthenticated = false;
+  username = "";
     async connectedCallback() {
-      this.isAuthenticated = await AuthenticationService();
-      if (!this.isAuthenticated) {
+      const authInfo = await AuthenticationService();
+      if (!authInfo.isAuthenticated) {
         window.location.href = '/login';
+      } else {
+        this.username = authInfo.user.username;
        }
      }
      

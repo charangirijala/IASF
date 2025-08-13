@@ -2,7 +2,10 @@
   <main>
     <lwr-router-container router={router}>
       <div class="slds-p-around_medium lgc-bg">
-        <h1 class="tw">IASF - Internal Application for Sales Fulfillment</h1>
+        <div class="slds-grid slds-grid_align-spread">
+          <h1 class="tw">IASF - Internal Application for Sales Fulfillment</h1>
+          <h1 class=""><a href="#">{username}</a></h1>
+        </div>
         <ui-pagelink label="Home" page-reference={homeReference}></ui-pagelink>
         <iasf-accountsearch></iasf-accountsearch>
       </div>

@@ -17,10 +17,24 @@ export async function AuthenticationService() {
           method: 'GET',
           credentials: 'include'
      });  
-     return apiResponse.status === 200 ;
+      if (apiResponse.status === 200) {
+          const { user } = await apiResponse.json();
+          return {
+               isAuthenticated: true,
+               user
+          }
+      } else {
+           return {
+                isAuthenticated: false,
+                user: {}
+           }
+     }
      } catch (error) {
           console.error('Auth check failed:', error);
-          return false;
+          return {
+               isAuthenticated: false,
+               user: {}
+          }
      }
      
 }
