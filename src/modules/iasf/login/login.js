@@ -12,12 +12,60 @@ export default class Login extends LightningElement{
      isLoading = false;
 
 
-
      handleUsernameChange(event) {
           this.username = event.target.value;
+          this.helptext = "";
      }
      handlePasswordChange(event) {
           this.password = event.target.value;
+          this.helptext = "";
+     }
+
+     async handleForgotPassword() {
+          // console.log('Forgot password clicked');
+          if (this.username.trim().length === 0) {
+               this.helptext = "Please enter username";
+               return;
+          }
+          try {
+               this.helptext = "";
+               this.isLoading = true;
+               const currentEnv = ENVIRONMENT;
+               console.log('currentenv', currentEnv);
+               let servicesURL = "";
+               if (currentEnv === 'Local') {
+                    console.log('SERVICES_URL_LOCAL', SERVICES_URL_LOCAL);
+                    servicesURL = SERVICES_URL_LOCAL
+               } else if (currentEnv === 'Prod') {
+                    servicesURL = SERVICES_URL_PROD
+               }
+               const apiResponse = await fetch(`${servicesURL}/auth/forgotpassword`, {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                         email: this.username
+                    })
+               });
+               if (apiResponse.status === 200) {
+                    const data = await apiResponse.json();
+                    this.isLoading = false;
+                    console.log(data);
+               } else if (apiResponse.status === 404) {
+                    console.log('Invalid credentials');
+                    this.isLoading = false;
+                    this.helptext = "The credentials you entered are incorrect. Please verify your username, then try again.";
+                    this.resetFormValues();
+               } else {
+                    this.isLoading = false;
+                    const data = await apiResponse.json();
+                    console.log('Response : 500 ',data);
+               }
+          } catch (error) {
+               this.isLoading = false;
+               console.log('error occured while connecting to API', error);
+          }
      }
      async handleLogin(event) {
           let inputValidated = true;
